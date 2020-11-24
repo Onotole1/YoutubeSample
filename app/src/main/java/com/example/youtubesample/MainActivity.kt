@@ -12,9 +12,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val videoId = "Lw2yBw6KsJs"
-        with(binding.youtubeThumbnail) {
-            loadPreview(videoId)
-            initYoutubeView(videoId)
+        with(binding.youtube) {
+            doWhenReady {
+                it.cueVideo(videoId, 0.0F)
+            }
+            lifecycle.addObserver(this)
         }
     }
 }
